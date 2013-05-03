@@ -1,0 +1,64 @@
+! ----------------------------------------------------------------------------------
+! archivo:		~/.Xdefaults
+! autor:		Carlos Egüez - http://lasaventurasdetux.blogspot.com
+! modificado:		Oct. 2010
+! vim:enc=utf-8:nu:ai:si:etc: ts=4: sw=4: ft=xdefaults:
+! ----------------------------------------------------------------------------------
+
+! Xft settings ---------------------------------
+Xft.dpi:	96
+Xft.antialias:	true
+Xft.rgba:	rgb
+Xft.hinting:	true
+Xft.hintstyle:	hintslight
+
+! Urxvt options --------------------------------
+URxvt*urgentOnBell:	true
+!URxvt*visualBell:	true
+URxvt.saveLines:	3000
+URxvt.geometry:		105x30
+URxvt.buffered:		true
+URxvt.background:	black
+URxvt.foreground:	green
+URxvt.cursorColor:	red
+URxvt.underlineColor:	yellow
+URxvt*font:		xft:Terminus:pixelsize=12:antialias=false
+URxvt*boldFont:		xft:Terminus:bold:pixelsize=12:antialias=false
+URxvt.perl-ext-common:	default,tabbed,matcher
+URxvt.title:		ArchBox - Taoshi
+Urxvt*urlLauncher:	/usr/bin/chromium
+
+!-----------------
+!True Transparency
+!-----------------
+!set to 32-bit for real transparency (compositing required)
+urxvt*depth:		32
+!transparent=0000 opaque=ffff
+urxvt*background: rgba:1111/1111/1111/dddd
+!urxvt*background:rgba.1111/1111/1111/0000
+
+! Urxvt visual options
+URxvt.secondaryScroll:	true
+URxvt*scrollstyle:	plain
+!URxvt.borderless:	true
+
+
+!Color Theme (from: http://phraktured.net/terminal-colors/)
+*background: rgb:00/00/00
+*foreground: rgb:7f/7f/7f
+*color0:     rgb:00/00/00
+*color1:     rgb:9e/18/28
+*color2:     rgb:ae/ce/92
+*color3:     rgb:96/8a/38
+*color4:     rgb:41/41/71
+*color5:     rgb:96/3c/59
+*color6:     rgb:41/81/79
+*color7:     rgb:be/be/be
+*color8:     rgb:66/66/66
+*color9:     rgb:cf/61/71
+*color10:    rgb:c5/f7/79
+*color11:    rgb:ff/f7/96
+*color12:    rgb:41/86/be
+*color13:    rgb:cf/9e/be
+*color14:    rgb:71/be/be
+*color15:    rgb:ff/ff/ff
