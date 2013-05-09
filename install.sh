@@ -21,6 +21,7 @@ error() { echo "\033[1;31m=> Error: $1\033[0m"; }
 
 # item de lista
 i_lista() { echo " \033[1;32m✔\033[0m $1"; }
+n
 
 # item de error de lista
 e_lista() { echo " \033[1;31m✖\033[0m $1"; }

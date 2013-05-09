@@ -1,6 +1,19 @@
-filetype indent plugin on
+set nocompatible                " vim, not vi
+filetype off
 colorscheme dante
 syntax on
+
+" ------------------
+"  vundle config
+"  ----------------
+set rtp+=~/dotfiles/vim/bundle/vundle/
+call vundle#rc()
+
+"let Vundle manage Vundle -- required!
+Bundle 'gmarik/vundle'
+" Bundle 'tpope/vim-fugitive'
+filetype indent plugin on
+
 set expandtab
 set tabstop=2
 set cindent
@@ -11,7 +24,6 @@ set more                        " más entrada
 set autoread                    " para cambios en el archivo
 set showmode
 set showcmd
-set nocompatible                " vim, not vi
 set smarttab                    " tab and backspace smart
 set tabstop=6                   " 6 espacios
 set shiftwidth=6                " 
@@ -24,3 +36,4 @@ set mousehide                 " oculta mientras se escribe
 " pega sin formato el texto
 map <MouseMiddle> <esc>"*p    
 " ------------------------------------
+set hlsearch

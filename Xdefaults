@@ -1,8 +1,8 @@
 ! ----------------------------------------------------------------------------------
 ! archivo:		~/.Xdefaults
 ! autor:		Carlos Egüez - http://lasaventurasdetux.blogspot.com
-! modificado:		Oct. 2010
-! vim:enc=utf-8:nu:ai:si:etc: ts=4: sw=4: ft=xdefaults:
+! modificado:		Mayo. 2013
+! vim:enc=utf-8:nu:ai:si:etc:ts=4:sw=4:ft=xdefaults:
 ! ----------------------------------------------------------------------------------
 
 ! Xft settings ---------------------------------
@@ -13,8 +13,9 @@ Xft.hinting:	true
 Xft.hintstyle:	hintslight
 
 ! Urxvt options --------------------------------
-URxvt*urgentOnBell:	true
-!URxvt*visualBell:	true
+!URxvt*urgentOnBell:	false
+URxvt*visualBell:	true
+URxvt.insecure: true
 URxvt.saveLines:	3000
 URxvt.geometry:		105x30
 URxvt.buffered:		true
@@ -22,11 +23,13 @@ URxvt.background:	black
 URxvt.foreground:	green
 URxvt.cursorColor:	red
 URxvt.underlineColor:	yellow
-URxvt*font:		xft:Terminus:pixelsize=12:antialias=false
-URxvt*boldFont:		xft:Terminus:bold:pixelsize=12:antialias=false
+URxvt*font:		xft:SourceCodePro-Regular:pixelsize=11:antialias=false
+URxvt*boldFont:		xft:SourceCodePro-Regular:bold:pixelsize=11:antialias=false
+URxvt.letterSpace: -1
 URxvt.perl-ext-common:	default,tabbed,matcher
-URxvt.title:		ArchBox - Taoshi
-Urxvt*urlLauncher:	/usr/bin/chromium
+URxvt.title:		C33lBox - Speedlight
+Urxvt*urlLauncher:	/usr/bin/iceweasel
+URxvt.matcher.button:   1
 
 !-----------------
 !True Transparency
@@ -40,7 +43,7 @@ urxvt*background: rgba:1111/1111/1111/dddd
 ! Urxvt visual options
 URxvt.secondaryScroll:	true
 URxvt*scrollstyle:	plain
-!URxvt.borderless:	true
+URxvt.borderless:	true
 
 
 !Color Theme (from: http://phraktured.net/terminal-colors/)
