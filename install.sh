@@ -7,7 +7,7 @@
 dir=$HOME/dotfiles
 bakdir=$HOME/dotfiles_bak
 archivos="bashrc bash_aliases vimrc Xdefaults"
-depencias="git vim"
+dependencias="git vim"
 
 #------------
 # Funciones
@@ -32,7 +32,6 @@ backup() {
 	for file in $archivos; do
 	cp -Rf  $HOME/.$file $bakdir/
 	done
-	
 }
 
 # Verificación de dependencias
@@ -51,7 +50,7 @@ deps() {
 instalacion() {
 	mkdir -p $dir
 	for file in $archivos; do
-	ln -s $dir/$file $HOME/.$archivos
+	ln -sf $dir/$file $HOME/.$archivos
 	done
 }
 
@@ -65,22 +64,20 @@ instalacion() {
 aviso "Respaldando archivos a $dotfiles_bak.."
 backup
 
-aviso "Verficando dependencias.."
-not_met=0
-for need in "${dependencias[@]}"; do
-	deps $need
-	met=$?
-	not_met=$(echo "$not_met + $met" | bc)
-done
-
-if [ $not_met -gt 0 ]; then
-	error "Dependencia $not_met no cumplida!"
-	exit 1
-fi
+#aviso "Verficando dependencias.."
+#not_met=0
+#for need in "${dependencias[@]}"; do
+#	deps $need
+#	met=$?
+#	not_met=$(echo "$not_met + $met" | bc)
+#done
+#
+#if [ $not_met -gt 0 ]; then
+#	error "Dependencia $not_met no cumplida!"
+#	exit 1
+#fi
 
 aviso "Instalando.."
 instalacion
 
-popd
 aviso "Terminado!"
-exec $SHELL -1

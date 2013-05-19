@@ -23,8 +23,8 @@ URxvt.background:	black
 URxvt.foreground:	green
 URxvt.cursorColor:	red
 URxvt.underlineColor:	yellow
-URxvt*font:		xft:SourceCodePro-Regular:pixelsize=11:antialias=false
-URxvt*boldFont:		xft:SourceCodePro-Regular:bold:pixelsize=11:antialias=false
+URxvt*font:		xft:SourceCodePro-Regular:pixelsize=13:antialias=false
+URxvt*boldFont:		xft:SourceCodePro-Regular:bold:pixelsize=13:antialias=false
 URxvt.letterSpace: -1
 URxvt.perl-ext-common:	default,tabbed,matcher
 URxvt.title:		C33lBox - Speedlight
