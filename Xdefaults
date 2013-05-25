@@ -2,7 +2,7 @@
 ! archivo:		~/.Xdefaults
 ! autor:		Carlos Egüez - http://lasaventurasdetux.blogspot.com
 ! modificado:		Mayo. 2013
-! vim:enc=utf-8:nu:ai:si:etc:ts=4:sw=4:ft=xdefaults:
+! vim:nu:ai:si:ts=4:sw=4:ft=xdefaults:
 ! ----------------------------------------------------------------------------------
 
 ! Xft settings ---------------------------------
@@ -23,8 +23,8 @@ URxvt.background:	black
 URxvt.foreground:	green
 URxvt.cursorColor:	red
 URxvt.underlineColor:	yellow
-URxvt*font:		xft:SourceCodePro-Regular:pixelsize=13:antialias=false
-URxvt*boldFont:		xft:SourceCodePro-Regular:bold:pixelsize=13:antialias=false
+URxvt*font:		    xft:Source Code Pro for Powerline:regular:pixelsize=13:antialias=false
+URxvt*boldFont:		xft:Source Code Pro for Powerline:bold:pixelsize=13:antialias=false
 URxvt.letterSpace: -1
 URxvt.perl-ext-common:	default,tabbed,matcher
 URxvt.title:		C33lBox - Speedlight
