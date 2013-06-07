@@ -1,7 +1,8 @@
 set nocompatible                " vim, not vi
 filetype off
-colorscheme dante
 syntax on
+set background=dark
+colorscheme solarized 
 let g:Powerline_symbols = 'fancy'
 
 " ------------------ vundle config
@@ -14,6 +15,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
 Bundle 'spf13/PIV'
 Bundle 'kien/tabman.vim'
+Bundle 'altercation/vim-colors-solarized'
 filetype indent plugin on
 
 set encoding=utf-8
