@@ -10,12 +10,20 @@ set rtp+=~/dotfiles/vim/bundle/vundle/
 call vundle#rc()
 "let Vundle manage Vundle -- required!
 Bundle 'gmarik/vundle'
+"file and project explorer & block code commenter. Thankz scrooloose!
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
+"best status line, python support and pathced font needed, Source Code Pro for
+"Powerline in my git repo.
 Bundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
+" PHP integration for vim.
 Bundle 'spf13/PIV'
+" tabs panel.
 Bundle 'kien/tabman.vim'
+" best dark color scheme. 
 Bundle 'altercation/vim-colors-solarized'
+" Code completion engine.
+Bundle 'Valloric/YouCompleteMe'
 filetype indent plugin on
 
 set encoding=utf-8
