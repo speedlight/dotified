@@ -24,6 +24,9 @@ Bundle 'kien/tabman.vim'
 Bundle 'altercation/vim-colors-solarized'
 " Code completion engine.
 Bundle 'Valloric/YouCompleteMe'
+" Git wrapper for Vim
+Bundle 'tpope/vim-fugitive'
+
 filetype indent plugin on
 
 set encoding=utf-8

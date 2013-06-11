@@ -9,3 +9,5 @@ alias v='vim'
 # GIT ALIAS
 alias gpom='git pull origin master'
 alias gpsom='git push origin master'
+
+alias f2c='scp * proved@201.234.196.186:/publico'
