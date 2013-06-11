@@ -36,12 +36,13 @@ VIM Bundles:
       - 
 
 URXVT (Xdefaults):
+
       - Some distros read Xresources instead of Xdefaults, just rename the file.
       - Solarized color theme.
       - Source Code Pro for Powerline font.
 
 TODO:
-      - install the fonts for urxvt (in case you use it)
+      
       - Make bashrc distro-independed (Debian flavor actualy)
 
 
