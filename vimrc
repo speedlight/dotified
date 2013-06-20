@@ -8,13 +8,14 @@ let g:Powerline_symbols = 'fancy'
 " ------------------ vundle config
 set rtp+=~/dotfiles/vim/bundle/vundle/
 call vundle#rc()
-"let Vundle manage Vundle -- required!
+" Let Vundle manage Vundle -- required!
 Bundle 'gmarik/vundle'
-"file and project explorer & block code commenter. Thankz scrooloose!
+" File and project explorer & block code commenter. Thankz scrooloose!
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-"best status line, python support and pathced font needed, Source Code Pro for
-"Powerline in my git repo.
+" Plugin for NERDTree to have ony one panel on all tabs
+Bundle 'jistr/vim-nerdtree-tabs'
+"best status line, python support and patched font needed, Source Code Pro for Powerline in /fonts dir.
 Bundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
 " PHP integration for vim.
 Bundle 'spf13/PIV'
@@ -26,6 +27,10 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'Valloric/YouCompleteMe'
 " Git wrapper for Vim
 Bundle 'tpope/vim-fugitive'
+" Show the indent levels
+Bundle 'Yggdroot/indentLine'
+" 
+" -------------------------------
 
 filetype indent plugin on
 
@@ -53,8 +58,8 @@ set mousehide                 " oculta mientras se escribe
 "set clipboard=unnamed
 "set clipboard=unnamedplus
 
-" --------------- Mapeado
-" pega sin formato el texto
-nmap <MouseMiddle> <esc>"*p
-nmap <C-n> :NERDTreeToggle<CR>
+" ----------------------------- Mapeado
+nmap <MouseMiddle> <esc>"*p         " pega sin formato el texto
+map <F2> :NERDTreeTabsToggle<CR>        " F2 para abrir NERDTreeTabs 
+
 " ------------------------------------

@@ -10,4 +10,7 @@ alias v='vim'
 alias gpom='git pull origin master'
 alias gpsom='git push origin master'
 
-alias f2c='scp * proved@201.234.196.186:/publico'
+alias f2c='scp ~/tmp/* proved@201.234.196.186:/publico'
+alias ahcorp='ssh -XYC proved@201.234.196.186'
+alias pac='cd ~/workspace/pacahcorp/'
+alias wkspc='cd ~/workspace/'
