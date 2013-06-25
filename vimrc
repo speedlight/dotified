@@ -29,7 +29,8 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-fugitive'
 " Show the indent levels
 Bundle 'Yggdroot/indentLine'
-" 
+" CtrlP plugin
+Bundle 'kien/ctrlp.vim' 
 " -------------------------------
 
 filetype indent plugin on
