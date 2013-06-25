@@ -62,5 +62,6 @@ set mousehide                 " oculta mientras se escribe
 " ----------------------------- Mapeado
 nmap <MouseMiddle> <esc>"*p         " pega sin formato el texto
 map <F2> :NERDTreeTabsToggle<CR>        " F2 para abrir NERDTreeTabs 
+let g:ctrlp_map = '<c-p>' " C-p  para abrir modo normal de CtrlP 
 
 " ------------------------------------
