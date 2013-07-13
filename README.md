@@ -16,14 +16,15 @@ VIM Bundles:
       - NERDtree (scrooloose/nerdtree) 
         The vimrc have F2 mapped to toggle the panel, 
         my common keys to open a file are:
-            t to open the file in a newtab
-            i to open the file in horizontal split
+            t to open the file in a newtab.
+            i to open the file in horizontal split.
             s to open in vertical split.
+            m to toogle the menu to add, delete or move files and dirs.
       
       - Powerline (Lokaltog/powerline)
-            * Needs +python support, try installing vim-nox package for debian.
+            * Needs +python support, ( for debian try installing vim-nox package)
             * clone Lokaltog/powerline-fonts repository to ~/.fonts to have patched fonts, in fonts/ dir 
-            I have Source Code Pro for Powerline (the same font must be use the terminal)
+            I have Source Code Pro for Powerline (the same font must use the terminal)
             
       - Solarized color theme (altercation/vim-colors-solarized) 
             (for best result the terminal have to use the same theme, see Solarized webpage)
@@ -33,7 +34,13 @@ VIM Bundles:
       - YouCompleteMe (Valloric/YouCompleteMe) 
             Once is installed with Vundle, go to ~/.vim/bundle/YouCompleteMe and run ./install.sh 
             (with --clang-completer for C family code support)
-      - 
+      - Vim-fugitive (tpope/vim-fugitive)
+            Very useful git plugin to not leave vim :)
+      - IndentLine (Yggdroot/indentLine)
+            Just to have an easy way to follow the indents.
+      - CtrlP (kien/ctrlp.vim)
+            To find files from everywhere!
+            mapped to CTRL-P in normal mode.
 
 URXVT (Xdefaults):
 
@@ -44,6 +51,7 @@ URXVT (Xdefaults):
 TODO:
       
       - Make bashrc distro-independed (Debian flavor actualy)
-
+      - Have a real and complete install script.
+      - Add user-config feature, like vimrc-local.
 
 #### USE IT AT YOUR OWN RISK ####
