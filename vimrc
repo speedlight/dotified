@@ -1,8 +1,8 @@
 set nocompatible                " vim, not vi
 filetype off
 syntax on
-set background=dark
-colorscheme solarized 
+set background=light
+colorscheme hemisu 
 let g:Powerline_symbols = 'fancy'
 
 " ------------------ vundle config
@@ -45,6 +45,7 @@ set number                      " muestra número de lineas
 set ruler                       " muestra número de linea en la barra
 set more                        " más entrada
 set autoread                    " para cambios en el archivo
+set nofoldenable                " disable folding
 set hlsearch
 set showmode
 set showcmd
@@ -63,5 +64,6 @@ set mousehide                 " oculta mientras se escribe
 nmap <MouseMiddle> <esc>"*p         " pega sin formato el texto
 map <F2> :NERDTreeTabsToggle<CR>        " F2 para abrir NERDTreeTabs 
 let g:ctrlp_map = '<c-p>' " C-p  para abrir modo normal de CtrlP 
+let mapleader = ","
 
 " ------------------------------------
