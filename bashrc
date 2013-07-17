@@ -113,3 +113,5 @@ lightpurple='\e[1;35m'
 yellow='\e[1;33m'
 white='\e[1;37m'
 nc='\e[0m'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
