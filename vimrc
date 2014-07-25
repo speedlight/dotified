@@ -2,7 +2,7 @@ set nocompatible                " vim, not vi
 filetype off
 syntax on
 set background=dark
-colorscheme BusyBee 
+colorscheme solarized 
 let g:Powerline_symbols = 'fancy'
 
 " ------------------ vundle config
