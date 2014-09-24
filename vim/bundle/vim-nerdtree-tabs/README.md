@@ -66,6 +66,9 @@ Vim-nerdtree-tabs provides these commands:
 * `:NERDTreeSteppedClose` unfocuses the NERDTree, or closes/hides it if it was
   not focused.
 
+* `:NERDTreeFocusToggle` focus the NERDTree or create it if focus is
+  on a file, unfocus NERDTree if focus is on NERDTree
+
 There are also plug-mappings available with the same functionality:
 
 * `<plug>NERDTreeTabsOpen`
@@ -88,7 +91,7 @@ values:
 * `g:nerdtree_tabs_open_on_console_startup` (default: `0`)  
   Open NERDTree on console vim startup
 
-* `let g:nerdtree_tabs_no_startup_for_diff` (default: `1`)  
+* `g:nerdtree_tabs_no_startup_for_diff` (default: `1`)  
   Do not open NERDTree if vim starts in diff mode
 
 * `g:nerdtree_tabs_smart_startup_focus` (default: `1`)  

@@ -1,4 +1,4 @@
-" Copyright (C) 2011, 2012  Strahinja Val Markovic  <val@markovic.io>
+" Copyright (C) 2011, 2012  Google Inc.
 "
 " This file is part of YouCompleteMe.
 "
@@ -19,98 +19,92 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
+function! s:restore_cpo()
+  let &cpo = s:save_cpo
+  unlet s:save_cpo
+endfunction
+
 if exists( "g:loaded_youcompleteme" )
+  call s:restore_cpo()
   finish
-elseif v:version < 703 || !has( 'patch584' )
+elseif v:version < 703 || (v:version == 703 && !has('patch584'))
   echohl WarningMsg |
         \ echomsg "YouCompleteMe unavailable: requires Vim 7.3.584+" |
         \ echohl None
+  call s:restore_cpo()
   finish
 elseif !has( 'python' )
   echohl WarningMsg |
-        \ echomsg "YouCompleteMe unavailable: requires python 2.x" |
+        \ echomsg "YouCompleteMe unavailable: requires Vim compiled with " .
+        \ "Python 2.x support" |
         \ echohl None
+  call s:restore_cpo()
   finish
 endif
 
 let s:script_folder_path = escape( expand( '<sfile>:p:h' ), '\' )
+let s:python_folder_path = s:script_folder_path . '/../python/'
+let s:ycmd_folder_path = s:script_folder_path . '/../third_party/ycmd/'
 
-function! s:HasYcmCore()
-  let path_prefix = s:script_folder_path . '/../python/'
-  if filereadable(path_prefix . 'ycm_core.so')
+function! s:YcmLibsPresentIn( path_prefix )
+  if filereadable(a:path_prefix . 'ycm_client_support.so') &&
+        \ filereadable(a:path_prefix . 'ycm_core.so')
     return 1
-  elseif filereadable(path_prefix . 'ycm_core.pyd')
+  elseif filereadable(a:path_prefix . 'ycm_client_support.pyd') &&
+        \ filereadable(a:path_prefix . 'ycm_core.pyd')
+    return 1
+  elseif filereadable(a:path_prefix . 'ycm_client_support.dll') &&
+        \ filereadable(a:path_prefix . 'ycm_core.dll')
     return 1
   endif
   return 0
 endfunction
 
+if s:YcmLibsPresentIn( s:python_folder_path )
+  echohl WarningMsg |
+        \ echomsg "YCM libraries found in old YouCompleteMe/python location; " .
+        \ "please RECOMPILE YCM." |
+        \ echohl None
+  call s:restore_cpo()
+  finish
+endif
+
 let g:ycm_check_if_ycm_core_present =
       \ get( g:, 'ycm_check_if_ycm_core_present', 1 )
 
-if g:ycm_check_if_ycm_core_present && !s:HasYcmCore()
+if g:ycm_check_if_ycm_core_present &&
+      \ !s:YcmLibsPresentIn( s:ycmd_folder_path )
   echohl WarningMsg |
-        \ echomsg "ycm_core.[so|pyd] not detected; you need to compile YCM " .
-        \ "before using it. Read the docs!" |
+        \ echomsg "ycm_client_support.[so|pyd|dll] and " .
+        \ "ycm_core.[so|pyd|dll] not detected; you need to compile " .
+        \ "YCM before using it. Read the docs!" |
         \ echohl None
+  call s:restore_cpo()
   finish
 endif
 
 let g:loaded_youcompleteme = 1
 
-let g:ycm_min_num_of_chars_for_completion  =
-      \ get( g:, 'ycm_min_num_of_chars_for_completion', 2 )
-
-let g:ycm_filetype_whitelist =
-      \ get( g:, 'ycm_filetype_whitelist', {
-      \   '*' : 1,
-      \ } )
-
-" The fallback to g:ycm_filetypes_to_completely_ignore is here because of
-" backwards compatibility with previous versions of YCM.
-let g:ycm_filetype_blacklist =
-      \ get( g:, 'ycm_filetype_blacklist',
-      \   get( g:, 'ycm_filetypes_to_completely_ignore', {
-      \     'notes' : 1,
-      \     'markdown' : 1,
-      \     'text' : 1,
-      \ } ) )
-
-let g:ycm_filetype_specific_completion_to_disable =
-      \ get( g:, 'ycm_filetype_specific_completion_to_disable', {} )
-
-let g:ycm_register_as_syntastic_checker =
-      \ get( g:, 'ycm_register_as_syntastic_checker', 1 )
+" NOTE: Most defaults are in default_settings.json. They are loaded into Vim
+" global with the 'ycm_' prefix if such a key does not already exist; thus, the
+" user can override the defaults.
+" The only defaults that are here are the ones that are only relevant to the YCM
+" Vim client and not the server.
 
 let g:ycm_allow_changing_updatetime =
       \ get( g:, 'ycm_allow_changing_updatetime', 1 )
 
+let g:ycm_open_loclist_on_ycm_diags =
+      \ get( g:, 'ycm_open_loclist_on_ycm_diags', 1 )
+
 let g:ycm_add_preview_to_completeopt =
       \ get( g:, 'ycm_add_preview_to_completeopt', 0 )
-
-let g:ycm_complete_in_comments =
-      \ get( g:, 'ycm_complete_in_comments', 0 )
-
-let g:ycm_complete_in_strings =
-      \ get( g:, 'ycm_complete_in_strings', 1 )
-
-let g:ycm_collect_identifiers_from_comments_and_strings =
-      \ get( g:, 'ycm_collect_identifiers_from_comments_and_strings', 0 )
-
-let g:ycm_collect_identifiers_from_tags_files =
-      \ get( g:, 'ycm_collect_identifiers_from_tags_files', 0 )
-
-let g:ycm_seed_identifiers_with_syntax =
-      \ get( g:, 'ycm_seed_identifiers_with_syntax', 0 )
 
 let g:ycm_autoclose_preview_window_after_completion =
       \ get( g:, 'ycm_autoclose_preview_window_after_completion', 0 )
 
 let g:ycm_autoclose_preview_window_after_insertion =
       \ get( g:, 'ycm_autoclose_preview_window_after_insertion', 0 )
-
-let g:ycm_max_diagnostics_to_display =
-      \ get( g:, 'ycm_max_diagnostics_to_display', 30 )
 
 let g:ycm_key_list_select_completion =
       \ get( g:, 'ycm_key_list_select_completion', ['<TAB>', '<Down>'] )
@@ -124,33 +118,54 @@ let g:ycm_key_invoke_completion =
 let g:ycm_key_detailed_diagnostics =
       \ get( g:, 'ycm_key_detailed_diagnostics', '<leader>d' )
 
-let g:ycm_global_ycm_extra_conf =
-      \ get( g:, 'ycm_global_ycm_extra_conf', '' )
-
-let g:ycm_confirm_extra_conf =
-      \ get( g:, 'ycm_confirm_extra_conf', 1 )
-
-let g:ycm_extra_conf_globlist =
-      \ get( g:, 'ycm_extra_conf_globlist', [] )
-
-let g:ycm_filepath_completion_use_working_dir =
-      \ get( g:, 'ycm_filepath_completion_use_working_dir', 0 )
-
-let g:ycm_semantic_triggers =
-      \ get( g:, 'ycm_semantic_triggers', {
-      \   'c' : ['->', '.'],
-      \   'objc' : ['->', '.'],
-      \   'ocaml' : ['.', '#'],
-      \   'cpp,objcpp' : ['->', '.', '::'],
-      \   'perl' : ['->'],
-      \   'php' : ['->', '::'],
-      \   'cs,java,javascript,d,vim,ruby,python,perl6,scala,vb,elixir,go' : ['.'],
-      \   'lua' : ['.', ':'],
-      \   'erlang' : [':'],
-      \ } )
-
 let g:ycm_cache_omnifunc =
       \ get( g:, 'ycm_cache_omnifunc', 1 )
+
+let g:ycm_server_use_vim_stdout =
+      \ get( g:, 'ycm_server_use_vim_stdout', 0 )
+
+let g:ycm_server_log_level =
+      \ get( g:, 'ycm_server_log_level', 'info' )
+
+let g:ycm_server_keep_logfiles =
+      \ get( g:, 'ycm_server_keep_logfiles', 0 )
+
+let g:ycm_extra_conf_vim_data =
+      \ get( g:, 'ycm_extra_conf_vim_data', [] )
+
+let g:ycm_path_to_python_interpreter =
+      \ get( g:, 'ycm_path_to_python_interpreter', '' )
+
+let g:ycm_show_diagnostics_ui =
+      \ get( g:, 'ycm_show_diagnostics_ui',
+      \ get( g:, 'ycm_register_as_syntastic_checker', 1 ) )
+
+let g:ycm_enable_diagnostic_signs =
+      \ get( g:, 'ycm_enable_diagnostic_signs',
+      \ get( g:, 'syntastic_enable_signs', 1 ) )
+
+let g:ycm_enable_diagnostic_highlighting =
+      \ get( g:, 'ycm_enable_diagnostic_highlighting',
+      \ get( g:, 'syntastic_enable_highlighting', 1 ) )
+
+let g:ycm_echo_current_diagnostic =
+      \ get( g:, 'ycm_echo_current_diagnostic',
+      \ get( g:, 'syntastic_echo_current_error', 1 ) )
+
+let g:ycm_always_populate_location_list =
+      \ get( g:, 'ycm_always_populate_location_list',
+      \ get( g:, 'syntastic_always_populate_loc_list', 0 ) )
+
+let g:ycm_error_symbol =
+      \ get( g:, 'ycm_error_symbol',
+      \ get( g:, 'syntastic_error_symbol', '>>' ) )
+
+let g:ycm_warning_symbol =
+      \ get( g:, 'ycm_warning_symbol',
+      \ get( g:, 'syntastic_warning_symbol', '>>' ) )
+
+let g:ycm_goto_buffer_command =
+      \ get( g:, 'ycm_goto_buffer_command', 'same-buffer' )
 
 " On-demand loading. Let's use the autoload folder and not slow down vim's
 " startup procedure.
@@ -160,5 +175,4 @@ augroup youcompletemeStart
 augroup END
 
 " This is basic vim plugin boilerplate
-let &cpo = s:save_cpo
-unlet s:save_cpo
+call s:restore_cpo()
