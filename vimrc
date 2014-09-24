@@ -1,8 +1,8 @@
 set nocompatible                " vim, not vi
 filetype off
 syntax on
-set background=light
-colorscheme hemisu
+set background=dark
+colorscheme solarized
 let g:Powerline_symbols = 'fancy'
 
 " ------------------ vundle config
