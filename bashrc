@@ -53,7 +53,7 @@ fi
 source ~/.git-prompt.sh
 
 if [ "$color_prompt" = yes ]; then
-      PS1='\[\e[1;34m\]┌─[\[\e[0;32m\]\@\u\[\e[0;31m\]@\[\e[0;35m\]\h\[\e[1;34m\]]──\[\e[1;34m\][\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└── \[\e[0;32m\]'
+      PS1='\[\e[1;34m\]┌─[\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└── \[\e[0;32m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
