@@ -14,3 +14,6 @@ alias qrkup='ssh -XYC root@quark-up.levelap.com'
 
 alias wkspc='cd ~/workspace/'
 alias levelampp='sudo /opt/levelampp/ctlscript.sh $1'
+alias lampp='sudo /opt/lampp/lampp $1'
+alias passgen='openssl rand -base64 8'
+alias passgen='openssl rand -base64 8'

@@ -2,7 +2,7 @@ set nocompatible                " vim, not vi
 filetype off
 syntax on
 set background=dark
-colorscheme solarized
+colorscheme candycode
 let g:Powerline_symbols = 'fancy'
 
 " ------------------ vundle config
@@ -21,10 +21,6 @@ Bundle 'Lokaltog/powerline', { 'rtp': 'powerline/bindings/vim' }
 Bundle 'spf13/PIV'
 " tabs panel.
 Bundle 'kien/tabman.vim'
-" best dark color scheme. 
-Bundle 'altercation/vim-colors-solarized'
-" Code completion engine.
-Bundle 'Valloric/YouCompleteMe'
 " Git wrapper for Vim
 Bundle 'tpope/vim-fugitive'
 " Show the indent levels
@@ -65,5 +61,4 @@ nmap <MouseMiddle> <esc>"*p         " pega sin formato el texto
 map <F2> :NERDTreeTabsToggle<CR>        " F2 para abrir NERDTreeTabs 
 let g:ctrlp_map = '<c-p>' " C-p  para abrir modo normal de CtrlP 
 let mapleader = ","
-
 " ------------------------------------
