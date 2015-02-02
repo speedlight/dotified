@@ -1,4 +1,0 @@
-awesome
-=======
-
-awesome config repository

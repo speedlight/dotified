@@ -13,7 +13,6 @@ servers = (
     chatnet = "QuakeNet";
     port = "6667";
   },
-  { address = "irc.oftc.net"; chatnet = "OFTC"; port = "6667"; },
   {
     address = "irc.gamesurge.net";
     chatnet = "GameSurge";
@@ -39,6 +38,16 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     family = "inet";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.oftc.net";
+    chatnet = "OFTC";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_cert = "~/.irssi/certs/speedlight-irc.pem";
+    ssl_verify = "yes";
+    ssl_cafile = "~/.irssi/certs/CAs.pem";
     autoconnect = "yes";
   }
 );
@@ -283,3 +292,4 @@ settings = {
 highlights = (
   { text = "speedlight"; color = "%M"; nick = "yes"; word = "yes"; }
 );
+ignores = ( { level = "JOINS PARTS QUITS"; } );
