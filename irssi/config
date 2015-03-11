@@ -110,6 +110,9 @@ channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
   { name = "#debian-es"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#proxmox"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#openmediavault"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#gitlab"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
