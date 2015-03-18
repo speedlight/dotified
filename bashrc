@@ -96,6 +96,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# show screenfetch
+if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
+
+
 #------------------------------------------////
 # Colors:
 #------------------------------------------////

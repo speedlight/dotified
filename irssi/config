@@ -113,6 +113,8 @@ channels = (
   { name = "#proxmox"; chatnet = "Freenode"; autojoin = "yes"; }
   { name = "#openmediavault"; chatnet = "Freenode"; autojoin = "yes"; }
   { name = "#gitlab"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#jenkins"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#pandorafms"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
