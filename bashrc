@@ -49,8 +49,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-#load git branch status script
-source ~/.git-prompt.sh
 
 if [ "$color_prompt" = yes ]; then
       PS1='\[\e[1;34m\]┌─[\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└── \[\e[0;32m\]'
@@ -96,8 +94,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#git branch status script
+if [ -f .git-prompt.sh ]; then source git-prompt.sh; fi
+
 # show screenfetch
-if [ -f /usr/bin/screenfetch ]; then screenfetch; fi
+if [ -f ~/bin/screenfetch ]; then screenfetch; fi
 
 
 #------------------------------------------////
