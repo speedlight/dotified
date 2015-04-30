@@ -1,9 +1,9 @@
-! ----------------------------------------------------------------------------------
-! archivo:		~/.Xdefaults
-! autor:		Carlos Egüez - http://lasaventurasdetux.blogspot.com
-! modificado:		Mayo. 2013
+! ----------------------------------------------------
+! archivo:	~/.Xdefaults
+! autor:	Carlos Egüez - http://lasaventurasdetux.blogspot.com
+! modificado:	Mayo. 2015
 ! vim:nu:ai:si:ts=4:sw=4:ft=xdefaults:
-! ----------------------------------------------------------------------------------
+! ----------------------------------------------------
 
 ! Xft settings ---------------------------------
 Xft.dpi:	96
@@ -14,96 +14,45 @@ Xft.hintstyle:	hintslight
 
 ! Urxvt options --------------------------------
 !URxvt*urgentOnBell:	false
-URxvt*visualBell:	true
 URxvt.insecure: true
 URxvt.saveLines:	3000
-URxvt.geometry:		105x30
+!URxvt.geometry:		105x30
 URxvt.buffered:		true
-URxvt.background:	black
-URxvt.foreground:	green
 URxvt.cursorColor:	red
 URxvt.underlineColor:	yellow
-URxvt*font:		    xft:Source Code Pro for Powerline:regular:pixelsize=13:antialias=false
-URxvt*boldFont:		xft:Source Code Pro for Powerline:bold:pixelsize=13:antialias=false
-URxvt.letterSpace: -1
-URxvt.perl-ext-common:	default,tabbed,matcher
-URxvt.title:		C33lBox - Speedlight
-Urxvt*urlLauncher:	/usr/bin/iceweasel
+URxvt.letterSpace: 	-1
+URxvt.title:		Speedbox - Speedlight
+Urxvt*url-launcher:	/usr/bin/chromium
 URxvt.matcher.button:   1
+URxvt*font:		xft:dejavu:regular:pixelsize=12:antialias=false
+URxvt*boldFont:		xft:dejavu:bold:pixelsize=14:antialias=false
+
+
+URxvt.perl-ext-common:	default,matcher,clipboard
 
 !-----------------
 !True Transparency
 !-----------------
 !set to 32-bit for real transparency (compositing required)
-urxvt*depth:		32
-!transparent=0000 opaque=ffff
-urxvt*background: rgba:1111/1111/1111/dddd
-!urxvt*background:rgba.1111/1111/1111/0000
+!urxvt*depth:		32
+!urxvt*background: rgba:1111/1111/1111/dddd
+
+!-----------------
+!Fake Transparency
+!-----------------
+URxvt*.transparent: 	true
+! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
+URxvt*.shading: 	10
 
 ! Urxvt visual options
-URxvt.secondaryScroll:	true
+URxvt.scrollBar:	false
 URxvt*scrollstyle:	plain
 URxvt.borderless:	true
 
+URxvt.secondaryScreen: 	1
+URxvt.secondaryScroll: 	0
+URxvt.secondaryWheel: 	1
 
-!Color Theme (from: http://phraktured.net/terminal-colors/)
-!*background: rgb:00/00/00
-!*foreground: rgb:7f/7f/7f
-!*color0:     rgb:00/00/00
-!*color1:     rgb:9e/18/28
-!*color2:     rgb:ae/ce/92
-!*color3:     rgb:96/8a/38
-!*color4:     rgb:41/41/71
-!*color5:     rgb:96/3c/59
-!*color6:     rgb:41/81/79
-!*color7:     rgb:be/be/be
-!*color8:     rgb:66/66/66
-!*color9:     rgb:cf/61/71
-!*color10:    rgb:c5/f7/79
-!*color11:    rgb:ff/f7/96
-!*color12:    rgb:41/86/be
-!*color13:    rgb:cf/9e/be
-!*color14:    rgb:71/be/be
-!*color15:    rgb:ff/ff/ff
-
-!!Source http://github.com/altercation/solarized
-*background: #002b36
-*foreground: #657b83
-!!*fading: 40
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
- 
-!! black dark/light
-*color0: #073642
-*color8: #002b36
- 
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
- 
-!! green dark/light
-*color2: #859900
-*color10: #586e75
- 
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
- 
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
- 
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
- 
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
- 
-!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
-
+#ifdef COLOR
+#include ".Xdefaults.d/colors"
+#endif

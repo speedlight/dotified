@@ -51,7 +51,7 @@ fi
 
 
 if [ "$color_prompt" = yes ]; then
-      PS1='\[\e[1;34m\]┌─[\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└── \[\e[0;32m\]'
+      PS1='\[\e[1;34m\]┌─╼ [\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└────╼  \[\e[0;32m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -95,7 +95,7 @@ if ! shopt -oq posix; then
 fi
 
 #git branch status script
-if [ -f .git-prompt.sh ]; then source git-prompt.sh; fi
+if [ -f .git-prompt.sh ]; then source .git-prompt.sh; fi
 
 # show screenfetch
 if [ -f ~/bin/screenfetch ]; then screenfetch; fi

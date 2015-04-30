@@ -109,12 +109,12 @@ chatnets = {
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
-  { name = "#debian-es"; chatnet = "Freenode"; autojoin = "yes"; }
-  { name = "#proxmox"; chatnet = "Freenode"; autojoin = "yes"; }
-  { name = "#openmediavault"; chatnet = "Freenode"; autojoin = "yes"; }
-  { name = "#gitlab"; chatnet = "Freenode"; autojoin = "yes"; }
-  { name = "#jenkins"; chatnet = "Freenode"; autojoin = "yes"; }
-  { name = "#pandorafms"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#debian-es"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#proxmox"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#openmediavault"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#gitlab"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#jenkins"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#pandorafms"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#salt"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
@@ -289,7 +289,7 @@ settings = {
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
     # Solarized
-    theme = "roses";
+    theme = "thing";
     hilight_color = "= %R";
   };
 };
