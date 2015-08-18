@@ -65,6 +65,6 @@ backup
 #	exit 1
 #fi
 warning "Instaling..."
-instalation
+#instalation
 
 warning "Done!"

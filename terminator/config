@@ -8,7 +8,7 @@
     background_type = transparent
     background_image = None
     show_titlebar = False
-    font = Terminus 10
+    font = Source Code Pro for Powerline Semi-Light 10
     scrollback_infinite = True
 [layouts]
   [[default]]
