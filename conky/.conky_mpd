@@ -1,7 +1,6 @@
-# this file goes in ~
 background no
 use_xft yes
-xftfont monospace:pixelsize=11
+xftfont inconsolata:pixelsize=12
 xftalpha 1
 total_run_times 0
 own_window yes
@@ -15,23 +14,20 @@ default_color cyan
 default_shade_color black
 default_outline_color white
 alignment bottom_left
-gap_x 12
-gap_y 0
+gap_x 300
+gap_y 15
 cpu_avg_samples 10
 override_utf8_locale yes
 
-minimum_size 500
-maximum_width 500
-color2 DC143C
+minimum_size 100
+maximum_width 1050
+
+color1 77F1FF
+color2 E4E9CB
+color3 B4412C
 
 TEXT
 #leet chars: ┤┤└└┴┴┐┐││┘┘┌┌├├┬┬┼┼┴┴── ││ ▽▼△▲▵▴▾▿
- ┌──────────────────────┐
-┌┤  MUSIC PLAYER DAEMON │
-│└──────────┬───────────┘
-├─ Status: ${mpd_status} / Volume: ${mpd_vol}% / ${exec amixer get Master | grep "Front Left:" | awk '{print $5}'}
-├─ Artist: ${mpd_artist}
-├─ Title : ${mpd_title}
-├─ Album : ${mpd_album}
-${color2}${mpd_percent}% ${mpd_bar 3,400}${color}
-
+${color1}├─ Artist: ${color2}${mpd_artist} ${color1}├─ Title : ${color2}${mpd_title} 
+${color3}${mpd_bar 3, 1035}
+${offset 30}${color1}├─ Album : ${color2}${mpd_album}

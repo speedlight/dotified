@@ -98,7 +98,7 @@ fi
 if [ -f ~/bin/git-prompt ]; then source ~/bin/git-prompt; fi
 
 # show screenfetch
-if [ -f ~/bin/screenfetch ]; then screenfetch; fi
+if [ -f ~/bin/screenfetch ]; then ~/bin/screenfetch; fi
 
 
 #------------------------------------------////
@@ -122,4 +122,6 @@ if [ -f ~/bin/screenfetch ]; then screenfetch; fi
 #white='\e[1;37m'
 #nc='\e[0m'
 
-PATH=$PATH:$HOME/bin 
+PATH=$PATH:$HOME/bin:$HOME/bin/packer 
+
+export ATLAS_TOKEN="heOkkWLsGLsy3g.atlasv1.jx3wFxsNs6b64mrXLJKbOYzS2VNZ2HFQTRNJrqQzmrSIy56CRZ9vp4EAzIp3u977VJQ"
