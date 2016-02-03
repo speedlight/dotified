@@ -55,6 +55,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Yggdroot/indentLine'
+Plugin 'hdima/python-syntax'
 
 call vundle#end()            " required
 
@@ -65,9 +67,6 @@ if Vundled == 0
   :qa
 endif
 
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use: filetype plugin on
-"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just
@@ -75,12 +74,14 @@ filetype plugin indent on    " required
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to
 " auto-approve removal
-"
 " see :h vundle for more details or wiki for FAQ
-"
+
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use: filetype plugin on
+
 " Put your non-Plugin stuff after this line
 
-colorscheme zenburn
+colors zenburn
 set encoding=utf-8
 set nu
 set laststatus=2
@@ -88,18 +89,24 @@ set t_Co=256
 
 let g:Powerline_symbols = 'fancy'
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:indentLine_color_term = 239
 let python_highlight_all=1
 
 " PEP8 Tabulation
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+" au BufNewFile,BufRead *.py *.html
+"     \ set tabstop=4
+"     \ set softtabstop=4
+"     \ set shiftwidth=4
+"     \ set textwidth=79
+"     \ set expandtab
+"     \ set autoindent
+"     \ set fileformat=unix
+
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4
 
 map <F2> :NERDTreeToggle<CR>        " F2 para abrir NERDTreeTabs 
+nmap <MouseMiddle> <esc>"*p         " pega sin formato el texto
 
 syntax on
