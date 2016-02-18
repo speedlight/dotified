@@ -100,6 +100,8 @@ if [ -f ~/bin/git-prompt ]; then source ~/bin/git-prompt; fi
 # show screenfetch
 if [ -f ~/bin/screenfetch ]; then ~/bin/screenfetch; fi
 
+# source bash_prompt
+#if [ -f $HOME/.bash_prompt ]; then source $HOME/.bash_prompt; fi
 
 #------------------------------------------////
 # Colors:
