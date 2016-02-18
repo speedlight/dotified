@@ -55,6 +55,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
 Plugin 'hdima/python-syntax'
 
@@ -81,11 +82,15 @@ filetype plugin indent on    " required
 
 " Put your non-Plugin stuff after this line
 
-colors zenburn
+colors Tomorrow-Night-Eighties
 set encoding=utf-8
 set nu
 set laststatus=2
 set t_Co=256
+set showcmd
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
 let g:Powerline_symbols = 'fancy'
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -106,7 +111,11 @@ autocmd FileType python set sw=4
 autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 
-map <F2> :NERDTreeToggle<CR>        " F2 para abrir NERDTreeTabs 
-nmap <MouseMiddle> <esc>"*p         " pega sin formato el texto
+map <F2> :NERDTreeToggle<CR>        " F2 para abrir NERDTree
+nmap <MouseMiddle> <esc>	    " pega sin formato el texto
+" buffer F12 next, Shift+F12 previous
+nnoremap <silent> <F12> :bn<CR>
+nnoremap <silent> <S-F12> :bn<CR>
+let mapleader=","
 
 syntax on
