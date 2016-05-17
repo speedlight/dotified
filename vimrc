@@ -58,6 +58,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
 Plugin 'hdima/python-syntax'
+Plugin 'davidhalter/jedi-vim'
 
 call vundle#end()            " required
 
@@ -98,7 +99,7 @@ let g:indentLine_color_term = 239
 let python_highlight_all=1
 
 " PEP8 Tabulation
-" au BufNewFile,BufRead *.py *.html
+" au BufNewFile,BufRead *.py
 "     \ set tabstop=4
 "     \ set softtabstop=4
 "     \ set shiftwidth=4
@@ -111,11 +112,22 @@ autocmd FileType python set sw=4
 autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 
-map <F2> :NERDTreeToggle<CR>        " F2 para abrir NERDTree
-nmap <MouseMiddle> <esc>	    " pega sin formato el texto
-" buffer F12 next, Shift+F12 previous
-nnoremap <silent> <F12> :bn<CR>
-nnoremap <silent> <S-F12> :bn<CR>
-let mapleader=","
+autocmd FileType html set sw=2
+autocmd FileType html set ts=2
+autocmd FileType html set sts=2
 
+" Keybinds 
+let mapleader=","
+" F2 para abrir NERDTree
+map <F2> :NERDTreeToggle<CR>
+" pega sin formato el texto
+nmap <MouseMiddle> <esc>
+" buffer next/previous
+nnoremap <silent> <F12> :bn<CR>
+nnoremap <silent> <S-F12> :bp<CR>
+" tabs
+map + :tabnew<CR>
+map - :tabclose<CR>
+map <S-Tab> :tabn<CR>
+map <S-A-Tab> :tabp<CR>
 syntax on

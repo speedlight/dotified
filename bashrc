@@ -95,10 +95,10 @@ if ! shopt -oq posix; then
 fi
 
 #git branch status script
-if [ -f ~/bin/git-prompt ]; then source ~/bin/git-prompt; fi
+if [ -f $HOME/bin/git-prompt ]; then source $HOME/bin/git-prompt; fi
 
 # show screenfetch
-if [ -f ~/bin/screenfetch ]; then ~/bin/screenfetch; fi
+if [ -f $HOME/bin/screenfetch ]; then $HOME/bin/screenfetch; fi
 
 # source bash_prompt
 #if [ -f $HOME/.bash_prompt ]; then source $HOME/.bash_prompt; fi
