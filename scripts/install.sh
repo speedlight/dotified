@@ -5,15 +5,18 @@
 # Carlos 'Speedlight' Egüez
 # Since 1999
 #-----------------------------
+# Install:
+# curl -L https://raw.github.com/speedlight/dotified/master/install.sh | sh
 
 #------------
 # Variables
 #------------
 
-DOTSDIR=$HOME/dotfiles
-DOTSBAKDIR=$HOME/dotfiles_orig
+DOTSDIR=$HOME/dotified
+DOTSBAKDIR=$HOME/dotfiles.bak
+# put in DOTS variable the name of files and directories (without the ".")
 DOTS="bashrc bash_aliases vimrc vim Xdefaults config/terminator"
-deps="git bash"
+DEPS="git bash"
 
 #------------
 # Messages
@@ -55,30 +58,24 @@ fi
 echo -e "Ready to be dotified?"
 
 echo -e "Verficando dependencias.."
-not_met=0
-for dep in $deps; do
+for dep in $DEPS; do
     if [ -x "$(command -v $dep)" ]; then
         echo "Dependencia $dep cumplida!"
     else
-        not_met=1
-        nodeps="$dep"
         echo "Dependencia $dep no cumplida!"
         exit 1
     fi
 done
-#	met=$?
-#	not_met=$(echo "$not_met + $met" | bc)
-#done
-#
-#if [ $not_met -gt 0 ]; then
-#	error ""
-#	exit 1
-#fi
-#			list_item $1
-#		else
-#			error_item $1
-#		fi
-#	return $instaled
+
+if [ ! -d "$DOTSDIR" ]; then
+    echo -e "Cloning repository..."
+    git clone https://github.com/speedlight/dotfiles.git $DOTSDIR
+    cd $DOTSDIR
+else
+    echo -e "Directory already exist, updating the repository..." 
+    cd $DOTSDIR
+    git pull origin master
+fi
 
 backup_orig() {
     while true; do
@@ -107,7 +104,7 @@ backup_orig() {
                         mkdir -p $DOTSBAKDIR
                         echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
                         for dot in $DOTS; do
-                            cp -Rf $HOME/.$dot $DOTSBAKDIR/.
+                            cp -RfL $HOME/.$dot $DOTSBAKDIR/.
                         done
                         echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
                         break
@@ -125,6 +122,12 @@ backup_orig() {
 
 silent_install() {
     echo -e "Silent dotified process... Let the robot do his job..."
+    mkdir -p $DOTSBAKDIR
+    echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
+    for dot in $DOTS; do
+        cp -RfL $HOME/.$dot $DOTSBAKDIR/.
+    done
+    echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
     sleep 1
 }
 
