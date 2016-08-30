@@ -6,7 +6,8 @@
 # Since 1999
 #-----------------------------
 # Install:
-# curl -L https://raw.github.com/speedlight/dotified/master/install.sh | sh
+# This is just for -s silent mode
+# wget -qO- https://raw.githubusercontent.com/speedlight/dotfiles/master/scripts/install.sh | bash -s -- -s
 
 #------------
 # Variables
@@ -15,7 +16,8 @@
 DOTSDIR=$HOME/dotified
 DOTSBAKDIR=$HOME/dotfiles.bak
 # put in DOTS variable the name of files and directories (without the ".")
-DOTS="bashrc bash_aliases vimrc vim Xdefaults config/terminator"
+DOTS="bashrc bash_aliases vimrc Xdefaults"
+DOTSCFG="vim/colors config/terminator"
 DEPS="git bash"
 
 #------------
@@ -77,7 +79,24 @@ else
     git pull origin master
 fi
 
-backup_orig() {
+bkpdots() {
+echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
+for dot in $DOTS; do
+    if [ -e $HOME/.$dot ]; then
+        cp -RfL $HOME/.$dot $DOTSBAKDIR/.
+    fi
+done
+for dotcfg in $DOTSCFG; do
+    if [ -e $HOME/.$dotcfg ]; then
+        cfg2=$(find $HOME -maxdepth 2 -type l -exec ls -d {} \; |grep $dotcfg |sed "s|^$HOME\/\.||")
+        echo $cfg2
+        cp -RfL $HOME/.$dotcfg $DOTSBAKDIR/$cfg2
+    fi
+done
+echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
+}
+
+backup() {
     while true; do
         read -e -n 1 -r -p "Do you want to backup your original dotfiles? [y/N] " choice
         case $choice in
@@ -87,11 +106,7 @@ backup_orig() {
                         read -e -n 1 -r -p "Backup directory $DOTSBAKDIR already exist, do you want to overwrite? [y/N]" resp
                         case $resp in
                             [yY])
-                                echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
-                                for dot in $DOTS; do
-                                    cp -Rf $HOME/.$dot $DOTSBAKDIR/.
-                                done
-                                echo -e "Your originals configs has been backed up to "
+                                bkpdots
                                 break;;
                             [nN])
                                 echo -e "Instalation aborted, please copy $DOTSBAKDIR to other location"
@@ -102,11 +117,7 @@ backup_orig() {
                         esac
                     elif ! [ -d $DOTSBAKDIR ]; then
                         mkdir -p $DOTSBAKDIR
-                        echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
-                        for dot in $DOTS; do
-                            cp -RfL $HOME/.$dot $DOTSBAKDIR/.
-                        done
-                        echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
+                        bkpdots
                         break
                     fi
                 done
@@ -123,44 +134,27 @@ backup_orig() {
 silent_install() {
     echo -e "Silent dotified process... Let the robot do his job..."
     mkdir -p $DOTSBAKDIR
-    echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
-    for dot in $DOTS; do
-        cp -RfL $HOME/.$dot $DOTSBAKDIR/.
-    done
-    echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
+    bkpdots
     sleep 1
 }
 
 interactive_install() {
     echo -e "Interactive dotified process... Better a human machine..."
     sleep 1
+    cd $HOME
+    for dot in $DOTS; do
+        ln -fs $DOTSDIR/$dot .$dot 
+    done
+#    for dotcfg in $DOTSCFG; do
+#        ln -fs $DOTSDIR/$dotcfg $dotcfg
+#    done
 }
-
-instalation() {
-	mkdir -p $dir
-	for file in $configs; do
-	ln -sf $dir/$file $HOME/.$configs
-	done
-}
-
-#-------------
-# Instalacion
-#-------------
-
-# copiando archivos indicados en $archivos a $bakdir
-#echo -e "Backup configs to: $dotfiles_bak.."
-# backup
-
-#echo -e "Instaling..."
-#instalation
-
-#echo -e "Done!"
 
 if [ $silent ]; then
     silent_install
 fi
 
 if [[ $interactive ]] && ! [[ $silent ]]; then
-    backup_orig
+    backup
     interactive_install
 fi
