@@ -1,7 +1,7 @@
 "<-----------------<>------------------>"
 "      Speedlight vim configuration     "
 " https:/github.com/speedlight/dotfiles "
-"<-----.-----------<>------------------>"
+"<-----------------<>------------------>"
 
 " Copied from https://github.com/VundleVim and modified by me :)
 " Automatic Vundle instalation taken from:
