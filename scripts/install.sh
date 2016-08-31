@@ -88,9 +88,12 @@ for dot in $DOTS; do
 done
 for dotcfg in $DOTSCFG; do
     if [ -e $HOME/.$dotcfg ]; then
-        cfg2=$(find $HOME -maxdepth 2 -type l -exec ls -d {} \; |grep $dotcfg |sed "s|^$HOME\/\.||")
-        echo $cfg2
-        cp -RfL $HOME/.$dotcfg $DOTSBAKDIR/$cfg2
+        cfg1=$(sed "s|\/.*||" <<< $dotcfg)
+        #cfg2=$(find $HOME -maxdepth 2 -type l -exec ls -d {} \; |grep $dotcfg |sed "s|^$HOME\/\.||")
+        if [ ! -e $DOTSBAKDIR/.$dotcfg ]; then
+            mkdir -p $DOTSBAKDIR/.$dotcfg
+        fi
+        cp -RfL $HOME/.$dotcfg $DOTSBAKDIR/.$cfg1/.
     fi
 done
 echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
@@ -143,11 +146,16 @@ interactive_install() {
     sleep 1
     cd $HOME
     for dot in $DOTS; do
-        ln -fs $DOTSDIR/$dot .$dot 
+        if [ -e $DOTSDIR/$dot ]; then
+            ln -fs $DOTSDIR/$dot .$dot 
+        fi
     done
-#    for dotcfg in $DOTSCFG; do
-#        ln -fs $DOTSDIR/$dotcfg $dotcfg
-#    done
+    for dotcfg in $DOTSCFG; do
+        if [ -e $DOTSDIR/$dotcfg ]; then
+            cfg1=$(sed "s|\/.*||" <<< $dotcfg)
+            ln -fs $DOTSDIR/$dotcfg .$cfg1/.
+        fi
+    done
 }
 
 if [ $silent ]; then
