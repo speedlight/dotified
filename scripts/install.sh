@@ -17,7 +17,7 @@ DOTSDIR=$HOME/dotified
 DOTSBAKDIR=$HOME/dotfiles.bak
 # put in DOTS variable the name of files and directories (without the ".")
 DOTS="bashrc bash_aliases vimrc Xdefaults"
-DOTSCFG="vim/colors config/terminator"
+DOTSCFG="vim/colors config/terminator bash_aliases.d"
 DEPS="git bash"
 
 #------------

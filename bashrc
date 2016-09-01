@@ -72,7 +72,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -81,6 +80,10 @@ fi
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+if [ -d ~/.bash_aliases.d ]; then
+    . ~/.bash_aliases.d/*
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -125,5 +128,3 @@ if [ -f $HOME/bin/screenfetch ]; then $HOME/bin/screenfetch; fi
 #nc='\e[0m'
 
 PATH=$PATH:$HOME/bin:$HOME/bin/packer 
-
-export ATLAS_TOKEN="heOkkWLsGLsy3g.atlasv1.jx3wFxsNs6b64mrXLJKbOYzS2VNZ2HFQTRNJrqQzmrSIy56CRZ9vp4EAzIp3u977VJQ"

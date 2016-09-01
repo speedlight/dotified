@@ -9,7 +9,7 @@
     background_type = transparent
     use_system_font = False
     show_titlebar = False
-    font = Source Code Pro for Powerline 10
+    font = Liberation Mono 10
     scrollback_infinite = True
 [layouts]
   [[default]]
