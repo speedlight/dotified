@@ -1,0 +1,6 @@
+alias actualizar='sudo apt-get update && sudo apt-get upgrade'
+alias ..='cd ..'
+alias ll='ls -ltrh'
+alias la='ls -altrh'
+alias v='vim'
+alias df='df -h'

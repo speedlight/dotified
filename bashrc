@@ -49,6 +49,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUPSTREAM="auto"
 
 if [ "$color_prompt" = yes ]; then
       PS1='\[\e[1;34m\]┌─╼ [\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└────╼  \[\e[0;32m\]'
@@ -83,7 +85,9 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 if [ -d ~/.bash_aliases.d ]; then
-    . ~/.bash_aliases.d/*
+    for ba in $(ls -1 ~/.bash_aliases.d); do
+        . ~/.bash_aliases.d/$ba
+    done
 fi
 
 # enable programmable completion features (you don't need to enable
