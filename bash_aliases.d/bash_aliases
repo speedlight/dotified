@@ -1,0 +1,7 @@
+if [ $(hostname) = "speedlight" ]; then
+    alias reiniciar='gksu "shutdown -r now"'
+    alias apagar='gksu "shutdown -h now"'
+    alias dormir='gksu "pm-suspend"'
+    alias p3m='python3 manage.py $1'
+    alias roombox='cd $HOME/SoftDev/python/roombox'
+fi

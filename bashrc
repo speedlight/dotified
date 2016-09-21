@@ -49,6 +49,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUPSTREAM="auto"
 
 if [ "$color_prompt" = yes ]; then
       PS1='\[\e[1;34m\]┌─╼ [\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└────╼  \[\e[0;32m\]'
@@ -72,7 +74,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -83,9 +84,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f ~/.bash_aliases_nwa ]; then
-    . ~/.bash_aliases_nwa
+if [ -d ~/.bash_aliases.d ]; then
+    for ba in $(ls -1 ~/.bash_aliases.d); do
+        . ~/.bash_aliases.d/$ba
+    done
 fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

@@ -17,7 +17,7 @@ DOTSDIR=$HOME/dotified
 DOTSBAKDIR=$HOME/dotfiles.bak
 # put in DOTS variable the name of files and directories (without the ".")
 DOTS="bashrc bash_aliases vimrc Xdefaults"
-DOTSCFG="vim/colors config/terminator"
+DOTSCFG="vim/colors config/terminator bash_aliases.d"
 DEPS="git bash"
 
 #------------
@@ -134,10 +134,21 @@ backup() {
     done
 }
 
+fonts() {
+    echo -e "Updating fonts cache, including $DOTSDIR/fonts location.."
+    if [ ! -d $HOME/.fonts ]; then
+        mkdir -p $HOME/.fonts
+    fi
+    ln -sf $DOTSDIR/fonts $HOME/.fonts/.
+    fc-cache -fv >/dev/null
+}
+
 silent_install() {
     echo -e "Silent dotified process... Let the robot do his job..."
     mkdir -p $DOTSBAKDIR
     bkpdots
+    sleep 1
+    fonts
     sleep 1
 }
 
@@ -165,4 +176,5 @@ fi
 if [[ $interactive ]] && ! [[ $silent ]]; then
     backup
     interactive_install
+    fonts
 fi
