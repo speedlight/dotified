@@ -1,5 +1,16 @@
 [global_config]
 [keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    background_image = None
+    background_darkness = 0.75
+    background_type = transparent
+    use_system_font = False
+    show_titlebar = False
+    font = Liberation Mono 10
+    scrollback_infinite = True
 [layouts]
   [[default]]
     [[[child1]]]
@@ -10,14 +21,3 @@
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_darkness = 0.75
-    background_image = None
-    background_type = transparent
-    font = Source Code Pro for Powerline Semi-Light 10
-    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
-    scrollback_infinite = True
-    scrollbar_position = hidden
-    show_titlebar = False
-    use_system_font = False
