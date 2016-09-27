@@ -16,9 +16,11 @@
 DOTSDIR=$HOME/dotified
 DOTSBAKDIR=$HOME/dotfiles.bak
 # put in DOTS variable the name of files and directories (without the ".")
-DOTS="bashrc bash_aliases vimrc Xdefaults"
-DOTSCFG="vim/colors config/terminator bash_aliases.d"
+DOTS="bashrc vimrc Xdefaults"
+DOTSCFG="vim/colors config/terminator"
+DOTBASHALIAS="bash_aliases.d"
 DEPS="git bash"
+LOGFILE=$HOME/.dotified.log
 
 #------------
 # Messages
@@ -51,6 +53,7 @@ done
 
 if [ $# -eq 0 ]; then
     echo -e "You need an argument\n"
+    show_usage
     exit 1
 elif [[ $silent ]] && [[ $interactive ]]; then
     echo -e "\033[91mOptions -s and -i are mutually exclusive. Use one or the other.\033[m"
@@ -80,23 +83,29 @@ else
 fi
 
 bkpdots() {
-echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
-for dot in $DOTS; do
-    if [ -e $HOME/.$dot ]; then
-        cp -RfL $HOME/.$dot $DOTSBAKDIR/.
-    fi
-done
-for dotcfg in $DOTSCFG; do
-    if [ -e $HOME/.$dotcfg ]; then
-        cfg1=$(sed "s|\/.*||" <<< $dotcfg)
-        #cfg2=$(find $HOME -maxdepth 2 -type l -exec ls -d {} \; |grep $dotcfg |sed "s|^$HOME\/\.||")
-        if [ ! -e $DOTSBAKDIR/.$dotcfg ]; then
-            mkdir -p $DOTSBAKDIR/.$dotcfg
+    echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
+    for dot in $DOTS; do
+        if [ -e $HOME/.$dot ]; then
+            cp -RfL $HOME/.$dot $DOTSBAKDIR/.
         fi
-        cp -RfL $HOME/.$dotcfg $DOTSBAKDIR/.$cfg1/.
+    done
+
+    for dotcfg in $DOTSCFG; do
+        if [ -e $HOME/.$dotcfg ]; then
+            cfg1=$(sed "s|\/.*||" <<< $dotcfg)
+            #cfg2=$(find $HOME -maxdepth 2 -type l -exec ls -d {} \; |grep $dotcfg |sed "s|^$HOME\/\.||")
+            if [ ! -e $DOTSBAKDIR/.$dotcfg ]; then
+                mkdir -p $DOTSBAKDIR/.$dotcfg
+            fi
+            cp -RfL $HOME/.$dotcfg $DOTSBAKDIR/.$cfg1/.
+        fi
+    done
+
+    if [ -e $HOME/.bash_aliases ]; then
+        cp $HOME/.bash_aliases $DOTSDIR/$DOTBASHALIAS/.bash_aliases_$HOSTNAME
     fi
-done
-echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
+
+    echo -e "Your originals configs has been backed up to $DOTSBAKDIR"
 }
 
 backup() {
@@ -116,7 +125,7 @@ backup() {
                                 exit 1;
                                 break;;
                             *)
-                                echo -e "PLease choose y or n.";;
+                                echo -e "Please choose y or n.";;
                         esac
                     elif ! [ -d $DOTSBAKDIR ]; then
                         mkdir -p $DOTSBAKDIR
@@ -139,7 +148,10 @@ fonts() {
     if [ ! -d $HOME/.fonts ]; then
         mkdir -p $HOME/.fonts
     fi
-    ln -sf $DOTSDIR/fonts $HOME/.fonts/.
+    for f in $(ls -1 $DOTSDIR/fonts); do
+      ln -fs $DOTSDIR/fonts/$f $HOME/.fonts/$f
+      echo -e "Symbolic link for .$f created.." >> $LOGFILE
+    done
     fc-cache -fv >/dev/null
 }
 
@@ -159,14 +171,22 @@ interactive_install() {
     for dot in $DOTS; do
         if [ -e $DOTSDIR/$dot ]; then
             ln -fs $DOTSDIR/$dot .$dot 
+            echo -e "Symbolic link for .$dot created.." >> $LOGFILE
         fi
     done
+
     for dotcfg in $DOTSCFG; do
         if [ -e $DOTSDIR/$dotcfg ]; then
             cfg1=$(sed "s|\/.*||" <<< $dotcfg)
             ln -fs $DOTSDIR/$dotcfg .$cfg1/.
+            echo -e "Symbolic link for .$dotcfg created.." >> $LOGFILE
         fi
     done
+
+    if [ -e $DOTSDIR/$DOTBASHALIAS ]; then
+        ln -fs $DOTSDIR/$DOTBASHALIAS .$DOTBASHALIAS
+        echo -e "Symbolic link for .$DOTBASHALIAS created.." >> $LOGFILE
+    fi
 }
 
 if [ $silent ]; then
@@ -177,4 +197,5 @@ if [[ $interactive ]] && ! [[ $silent ]]; then
     backup
     interactive_install
     fonts
+    echo -e "Dotfiles installed! Check the $LOGFILE for more details"
 fi
