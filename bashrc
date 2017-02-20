@@ -139,5 +139,3 @@ if [ -d $HOME/.config/composer ]; then
 fi
 
 PATH=$PATH:/opt/google/chrome
-
-export ATLAS_TOKEN="heOkkWLsGLsy3g.atlasv1.jx3wFxsNs6b64mrXLJKbOYzS2VNZ2HFQTRNJrqQzmrSIy56CRZ9vp4EAzIp3u977VJQ"
