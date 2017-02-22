@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #
 #-----------------------------
-# Dotfiles install script
+# Dotfiles bottstrap script
 # Carlos 'Speedlight' Egüez
 # Since 1999
 #-----------------------------
@@ -14,13 +14,21 @@
 #------------
 
 DOTSDIR=$HOME/dotified
-DOTSBAKDIR=$HOME/dotfiles.bak
-# put in DOTS variable the name of files and directories (without the ".")
+DOTSBAKDIR=$DOTSDIR.bak
+
+# put in this 'DOTS' variables the files and directories to be bootstraped (without the ".")
 DOTS="bashrc vimrc Xdefaults"
 DOTSCFG="vim/colors config/terminator"
 DOTBASHALIAS="bash_aliases.d"
+
 DEPS="git bash"
+
+# Logfile. See http://stackoverflow.com/questions/3173131/redirect-copy-of-stdout-to-log-file-from-within-bash-script-itself
+# First the logfile is truncated, then its stdout AND stderr streams are writed in the file. A plus is we could define separate logfiles of stdout and stderr.
 LOGFILE=$HOME/.dotified.log
+> $LOGFILE 
+exec > >(tee -ia $LOGFILE) # STDOUT stream wrote to logfile
+#exec 2> >(tee -ia $LOGFILE >&2) #STDERR stream wrote to logfile 
 
 #------------
 # Messages
@@ -47,7 +55,7 @@ while getopts ':hsi?' flag; do
         "s") silent=true;;
         "i") interactive=true ;;
         "?") show_usage; exit 0;;
-        *) echo -e "Unexpected option -$OPTARG, see -h for details" >&2 ;;
+        *) echo -e "Unexpected option -$OPTARG, see -h for help" >&2 ;;
     esac
 done
 
@@ -60,30 +68,31 @@ elif [[ $silent ]] && [[ $interactive ]]; then
     exit 1;
 fi
 
-echo -e "Ready to be dotified?"
-
-echo -e "Verficando dependencias.."
-for dep in $DEPS; do
-    if [ -x "$(command -v $dep)" ]; then
-        echo "Dependencia $dep cumplida!"
-    else
-        echo "Dependencia $dep no cumplida!"
-        exit 1
-    fi
-done
-
-if [ ! -d "$DOTSDIR" ]; then
-    echo -e "Cloning repository..."
-    git clone https://github.com/speedlight/dotfiles.git $DOTSDIR
-    cd $DOTSDIR
-else
-    echo -e "Directory already exist, updating the repository..." 
-    cd $DOTSDIR
-    git pull origin master
-fi
+checkenv() {
+    echo -e "Checking dependencies.."
+    for dep in $DEPS; do
+        if [ -x "$(command -v $dep)" ]; then
+            echo -e "Dependency $dep ok!"
+        else
+            echo -e "Dependency $dep not ok!"
+            exit 1
+        fi
+    done
+    
+#    if [ ! -d "$DOTSDIR" ]; then
+#        echo -e "Repository doesn't exist, cloning from github..."
+#        git clone https://github.com/speedlight/dotfiles.git $DOTSDIR
+#        cd $DOTSDIR
+#    else
+#        echo -e "Repository already exist, updating it..." 
+#        cd $DOTSDIR
+#        git pull origin master
+#    fi
+}
 
 bkpdots() {
-    echo -e "Coping your dots to $DOTSBAKDIR, please wait..."
+    echo -e "Coping your actual dots to $DOTSBAKDIR, please wait... \n 
+    !! Keep in mind that running this install again will overwrite those !!"
     for dot in $DOTS; do
         if [ -e $HOME/.$dot ]; then
             cp -RfL $HOME/.$dot $DOTSBAKDIR/.
@@ -125,7 +134,7 @@ backup() {
                                 exit 1;
                                 break;;
                             *)
-                                echo -e "Please choose y or n.";;
+                                echo -e "\033[91mPlease choose y or n.\033[m";;
                         esac
                     elif ! [ -d $DOTSBAKDIR ]; then
                         mkdir -p $DOTSBAKDIR
@@ -143,59 +152,92 @@ backup() {
     done
 }
 
+intfonts() {
+    while true; do
+        read -e -n 1 -r -p "Do you want to add $DOTSDIR/fonts and update the font cache? [y/N] " choice
+        case $choice in
+            [yY])
+                fonts
+                break;;
+            [nN])
+                echo -e "Dotified fonts location not added"
+                break;;
+            *)
+                echo -e "\033[91mPlease choose y or n.\033[m";;
+        esac
+    done
+}
+
 fonts() {
-    echo -e "Updating fonts cache, including $DOTSDIR/fonts location.."
     if [ ! -d $HOME/.fonts ]; then
         mkdir -p $HOME/.fonts
     fi
     for f in $(ls -1 $DOTSDIR/fonts); do
-      ln -fs $DOTSDIR/fonts/$f $HOME/.fonts/$f
-      echo -e "Symbolic link for .$f created.." >> $LOGFILE
+      ln -fs $DOTSDIR/fonts/$f $HOME/.fonts/
+      echo -e "Symlink for .$f in $HOME/.fonts/ created.." 
     done
+    echo -e "Updating fonts cache to include $DOTSDIR/fonts location.."
     fc-cache -fv >/dev/null
 }
 
 silent_install() {
-    echo -e "Silent dotified process... Let the robot do his job..."
-    mkdir -p $DOTSBAKDIR
-    bkpdots
+    checkenv
+    echo -e "Silent dotified process...\n 
+    Let the robot do his job..."
     sleep 1
-    fonts
-    sleep 1
+    symlinkdots
 }
 
 interactive_install() {
-    echo -e "Interactive dotified process... Better a human machine..."
+    checkenv
+    echo -e "Interactive dotified process... \n
+    Better a human machine..."
     sleep 1
+    symlinkdots
+}
+
+symlinkdots() {
     cd $HOME
     for dot in $DOTS; do
         if [ -e $DOTSDIR/$dot ]; then
             ln -fs $DOTSDIR/$dot .$dot 
-            echo -e "Symbolic link for .$dot created.." >> $LOGFILE
+            echo -e "Symlink for .$dot in $HOME/.$dot created.." 
+            sleep 1
         fi
     done
 
     for dotcfg in $DOTSCFG; do
         if [ -e $DOTSDIR/$dotcfg ]; then
-            cfg1=$(sed "s|\/.*||" <<< $dotcfg)
-            ln -fs $DOTSDIR/$dotcfg .$cfg1/.
-            echo -e "Symbolic link for .$dotcfg created.." >> $LOGFILE
+            cfg=$(sed "s|\/.*||" <<< $dotcfg)
+            ln -fs $DOTSDIR/$dotcfg .$cfg/
+            echo -e "Symlink for .$dotcfg in $HOME/.$cfg/.$dotcfg created.." 
+            sleep 1
         fi
     done
 
     if [ -e $DOTSDIR/$DOTBASHALIAS ]; then
-        ln -fs $DOTSDIR/$DOTBASHALIAS .$DOTBASHALIAS
-        echo -e "Symbolic link for .$DOTBASHALIAS created.." >> $LOGFILE
+        if [ -L .$DOTBASHALIAS ]; then
+            unlink .$DOTBASHALIAS
+            ln -fs $DOTSDIR/$DOTBASHALIAS .$DOTBASHALIAS
+        else 
+            ln -fs $DOTSDIR/$DOTBASHALIAS .$DOTBASHALIAS
+        fi
+        echo -e "Symlink for .$DOTBASHALIAS in $HOME/.$DOTBASHALIAS created.." 
+        sleep 1
     fi
 }
 
 if [ $silent ]; then
+    mkdir -p $DOTSBAKDIR
+    bkpdots
     silent_install
+    fonts
+    echo -e "You are now dotified!! Check the $LOGFILE to review any change"
 fi
 
 if [[ $interactive ]] && ! [[ $silent ]]; then
     backup
     interactive_install
-    fonts
-    echo -e "Dotfiles installed! Check the $LOGFILE for more details"
+    intfonts
+    echo -e "You are now dotified!! Check the $LOGFILE to review any change"
 fi
