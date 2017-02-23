@@ -53,17 +53,16 @@ The vimrc file autoinstall Vundle if isnt already installed, PEP8 identation and
             mapped to ctrl-p in normal mode.
 
 Xdefaults:
-      - Some distros read Xresources instead of Xdefaults, just rename the file.
-      - Solarized color theme.
-      - Source Code Pro for Powerline font.
+-     Some distros read Xresources instead of Xdefaults, just rename the file.
+-     Solarized color theme.
+-     Source Code Pro for Powerline font.
 
 terminator:
-      - No scrollbar, customized color pallete, SourceCodePro for Powerline font.
+-     No scrollbar, customized color pallete, SourceCodePro for Powerline font.
 
 TODO:
-      - Add user-config feature, like vimrc-local.
-      - Simple way to have per-machine configs like bash aliases, PS1, etc.
-      - Better yet, simple way to have profiles.
-      - Desktop screenshot.
-      - Ideas? 
-
+-     Add user-config feature, like vimrc-local.
+-     Simple way to have per-machine configs like bash aliases, PS1, etc.
+-     Better yet, simple way to have profiles.
+-     Desktop screenshot.
+-     Ideas? 
