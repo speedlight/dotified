@@ -10,16 +10,17 @@ The install script can be run in silent or interactive modes. Silent mode dont a
 INSTALL:
 
 Can be installed in silent mode via wget with:
-wget -qO- https://raw.githubusercontent.com/speedlight/dotfiles/master/scripts/install.sh | bash -s -- -s
+- wget -qO- https://raw.githubusercontent.com/speedlight/dotfiles/master/scripts/install.sh | bash -s -- -s
 
 Or for interactive mode:
-git clone https://github.com/speedlight/dotfiles.git ~/dotified
-./dotified/scripts/install.sh -i
+- git clone https://github.com/speedlight/dotfiles.git ~/dotified
+- ./dotified/scripts/install.sh -i
 
 The script have 3 variables to hold the files to be backed up or restore.
-$DOTS is for .files in $HOME
-$DOTSCFG is for .files that are under a dot directory like .config/terminator or .vim/colors
-$DOTBASHALIAS is for .bash_aliases.d directory specifically 
+- $DOTS is for .files in $HOME
+- $DOTSCFG is for .files that are under a dot directory like .config/terminator or .vim/colors
+- $DOTBASHALIAS is for .bash_aliases.d directory specifically 
+
 There is a .fonts directory also that is added to the fonts cache, so if you want your fonts to be dotified just put them in the fonts/ directory in the reposittory.
 
 BASH:
