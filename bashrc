@@ -5,17 +5,19 @@ case $- in
       *) return;;
 esac
 
+# PS1 icons
+PROMPT_SYMBOL="❯"
+CLEAN_SYMBOL="☀"
+DIRTY_SYMBOL="☂"
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
-
 HISTTIMEFORMAT="%F %T "
 
 # check the window size after each command and, if necessary,
@@ -51,11 +53,13 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUNTRACKEDFILES=1
 
 if [ "$color_prompt" = yes ]; then
-      PS1='\[\e[1;34m\]┌─╼ [\[\e[0;32m\]\w\[\e[1;34m\]]──[$(__git_ps1)] \n└────╼  \[\e[0;32m\]'
+      PS1='\[\e[1;34m\]┌─╼ [\[\e[0;32m\]\w\[\e[38;5;199m\]]──$(__git_ps1)$PROMPT_SYMBOL \n└────╼  \[\e[0;32m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -139,3 +143,34 @@ if [ -d $HOME/.config/composer ]; then
 fi
 
 PATH=$PATH:/opt/google/chrome
+
+# Console color support
+function colorgrid( ) {
+    iter=16
+        while [ $iter -lt 52 ];  do
+    second=$[$iter+36]
+    third=$[$second+36]
+    four=$[$third+36]
+    five=$[$four+36]
+    six=$[$five+36]
+    seven=$[$six+36]
+    if [ $seven -gt 250 ];then seven=$[$seven-251]; fi
+    echo -en "\033[38;5;$(echo $iter)m█ "
+    printf "%03d" $iter
+    echo -en "   \033[38;5;$(echo $second)m█ "
+    printf "%03d" $second
+    echo -en "   \033[38;5;$(echo $third)m█ "
+    printf "%03d" $third
+    echo -en "   \033[38;5;$(echo $four)m█ "
+    printf "%03d" $four
+    echo -en "   \033[38;5;$(echo $five)m█ "
+    printf "%03d" $five
+    echo -en "   \033[38;5;$(echo $six)m█ "
+    printf "%03d" $six
+    echo -en "   \033[38;5;$(echo $seven)m█ "
+    printf "%03d" $seven
+    
+    iter=$[$iter+1]
+        printf '\r\n'
+        done
+}
