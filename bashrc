@@ -59,7 +59,7 @@ GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWUNTRACKEDFILES=1
 
 if [ "$color_prompt" = yes ]; then
-      PS1='\[\e[1;34m\]┌─╼ [\[\e[0;32m\]\w\[\e[38;5;199m\]]──$(__git_ps1)$PROMPT_SYMBOL \n└────╼  \[\e[0;32m\]'
+      PS1='\[\e[38;5:003m\]┌─╼[\[\e[0;003m\]\w\[\e[38;5;003m\]]─$(__git_ps1)$PROMPT_SYMBOL\n└╼  \[\e[0;32m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -108,34 +108,11 @@ if ! shopt -oq posix; then
 fi
 
 #git branch status script
-if [ -f $HOME/bin/git-prompt ]; then source $HOME/bin/git-prompt; fi
+if [ -f $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh ]; then source $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh; fi
 
 # show screenfetch
 if [ -f $HOME/bin/screenfetch ]; then $HOME/bin/screenfetch; fi
 
-# source bash_prompt
-#if [ -f $HOME/.bash_prompt ]; then source $HOME/.bash_prompt; fi
-
-#------------------------------------------////
-# Colors:
-#------------------------------------------////
-#black='\e[0;30m'
-#blue='\e[0;34m'
-#green='\e[0;32m'
-#cyan='\e[0;36m'
-#red='\e[0;31m'
-#purple='\e[0;35m'
-#brown='\e[0;33m'
-#lightgray='\e[0;37m'
-#darkgray='\e[1;30m'
-#lightblue='\e[1;34m'
-#lightgreen='\e[1;32m'
-#lightcyan='\e[1;36m'
-#lightred='\e[1;31m'
-#lightpurple='\e[1;35m'
-#yellow='\e[1;33m'
-#white='\e[1;37m'
-#nc='\e[0m'
 
 PATH=$PATH:$HOME/bin:$HOME/bin/packer 
 if [ -d $HOME/.config/composer ]; then
@@ -174,3 +151,24 @@ function colorgrid( ) {
         printf '\r\n'
         done
 }
+
+#------------------------------------------////
+# Colors:
+#------------------------------------------////
+#black='\e[0;30m'
+#blue='\e[0;34m'
+#green='\e[0;32m'
+#cyan='\e[0;36m'
+#red='\e[0;31m'
+#purple='\e[0;35m'
+#brown='\e[0;33m'
+#lightgray='\e[0;37m'
+#darkgray='\e[1;30m'
+#lightblue='\e[1;34m'
+#lightgreen='\e[1;32m'
+#lightcyan='\e[1;36m'
+#lightred='\e[1;31m'
+#lightpurple='\e[1;35m'
+#yellow='\e[1;33m'
+#white='\e[1;37m'
+#nc='\e[0m'
