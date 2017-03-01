@@ -13,7 +13,7 @@ Can be installed in silent mode via wget with:
 - wget -qO- https://raw.githubusercontent.com/speedlight/dotfiles/master/scripts/install.sh | bash -s -- -s
 
 Or for interactive mode:
-- git clone https://github.com/speedlight/dotfiles.git ~/dotified
+- git clone --recursive https://github.com/speedlight/dotfiles.git ~/dotified
 - ./dotified/scripts/install.sh -i
 
 The script have 3 variables to hold the files to be backed up or restore.
