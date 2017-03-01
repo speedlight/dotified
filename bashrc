@@ -7,7 +7,6 @@ esac
 
 # PS1 icons
 PROMPT_SYMBOL="❯"
-CLEAN_SYMBOL="☀"
 DIRTY_SYMBOL="☂"
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -53,10 +52,14 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWCOLORHINTS=1
-GIT_PS1_SHOWUPSTREAM="auto"
-GIT_PS1_SHOWUNTRACKEDFILES=1
+#bash-git-prompt script
+if [ -f $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh ]; then source $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh; fi
+
+#GIT_PS1_SHOWDIRTYSTATE=1
+#GIT_PS1_SHOWCOLORHINTS=1
+#GIT_PS1_SHOWUPSTREAM="auto"
+#GIT_PS1_SHOW_UNTRACKED_FILES=1
+GIT_PROMPT_THEME=Speedlight
 
 if [ "$color_prompt" = yes ]; then
       PS1='\[\e[38;5:003m\]┌─╼[\[\e[0;003m\]\w\[\e[38;5;003m\]]─$(__git_ps1)$PROMPT_SYMBOL\n└╼  \[\e[0;32m\]'
@@ -107,8 +110,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#git branch status script
-if [ -f $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh ]; then source $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh; fi
 
 # show screenfetch
 if [ -f $HOME/bin/screenfetch ]; then $HOME/bin/screenfetch; fi

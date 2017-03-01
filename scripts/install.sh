@@ -34,7 +34,7 @@ DOTSDIR=$HOME/dotified
 DOTSBAKDIR=$DOTSDIR.bak
 
 # put in this 'DOTS' variables the files and directories to be bootstraped (without the ".")
-DOTS="bashrc vimrc Xdefaults"
+DOTS="bashrc vimrc Xdefaults git-prompt-colors.sh"
 DOTSCFG="vim/colors config/terminator"
 DOTBASHALIAS="bash_aliases.d"
 
@@ -96,15 +96,15 @@ checkenv() {
         fi
     done
     
-#    if [ ! -d "$DOTSDIR" ]; then
-#        echo -e "Repository doesn't exist, cloning from github..."
-#        git clone https://github.com/speedlight/dotfiles.git $DOTSDIR
-#        cd $DOTSDIR
-#    else
-#        echo -e "Repository already exist, updating it..." 
-#        cd $DOTSDIR
-#        git pull origin master
-#    fi
+    if [ ! -d "$DOTSDIR" ]; then
+        echo -e "Repository doesn't exist, cloning from github..."
+        git clone --recursive https://github.com/speedlight/dotfiles.git $DOTSDIR
+        cd $DOTSDIR
+    else
+        echo -e "Repository already exist, updating it..." 
+        cd $DOTSDIR
+        git pull origin master
+    fi
 }
 
 bkpdots() {
