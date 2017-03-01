@@ -53,19 +53,15 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 #bash-git-prompt script
-if [ -f $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh ]; then source $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh; fi
-
-#GIT_PS1_SHOWDIRTYSTATE=1
-#GIT_PS1_SHOWCOLORHINTS=1
-#GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PROMPT_SHOW_UNTRACKED_FILES=no
 GIT_PROMPT_THEME=Custom
 GIT_PROMPT_FILE=~/.git_prompt-colors.sh
-
+if [ -f $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh ]; then source $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh;
 if [ "$color_prompt" = yes ]; then
-      PS1='\[\e[38;5:003m\]┌─╼[\[\e[0;003m\]\w\[\e[38;5;003m\]]─$(__git_ps1)$PROMPT_SYMBOL\n└╼  \[\e[0;32m\]'
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+        export PS1='\[\e[38;5:014m\]┌╼[\[\e[0;003m\]\w\[\e[38;5;014m\]]\n└╼  \[\e[0;32m\]'
+    else
+        export PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
 fi
 unset color_prompt force_color_prompt
 
