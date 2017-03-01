@@ -58,8 +58,9 @@ if [ -f $HOME/dotified/scripts/bash-git-prompt/gitprompt.sh ]; then source $HOME
 #GIT_PS1_SHOWDIRTYSTATE=1
 #GIT_PS1_SHOWCOLORHINTS=1
 #GIT_PS1_SHOWUPSTREAM="auto"
-#GIT_PS1_SHOW_UNTRACKED_FILES=1
-GIT_PROMPT_THEME=Speedlight
+GIT_PROMPT_SHOW_UNTRACKED_FILES=no
+GIT_PROMPT_THEME=Custom
+GIT_PROMPT_FILE=~/.git_prompt-colors.sh
 
 if [ "$color_prompt" = yes ]; then
       PS1='\[\e[38;5:003m\]┌─╼[\[\e[0;003m\]\w\[\e[38;5;003m\]]─$(__git_ps1)$PROMPT_SYMBOL\n└╼  \[\e[0;32m\]'
