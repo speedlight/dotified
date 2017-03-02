@@ -25,7 +25,7 @@ There is a .fonts directory also that is added to the fonts cache, so if you wan
 
 BASH:
 
-The bashrc have git prompt from Shawn O. Pearce <spearce@spearce.org> (see git-prompt.sh for details).
+The bashrc have the bash-git-prompt script from https://github.com/magicmonty/bash-git-prompt loaded as a submodule repository under the scripts/ folder.
 Aliases can be created in diferent files under bash_aliases.d directory(for per machine purposes) and bashrc loads them automatically.
 
 VIM:
@@ -53,11 +53,11 @@ The vimrc file autoinstall Vundle if isnt already installed, PEP8 identation and
             mapped to ctrl-p in normal mode.
 
 Xdefaults:
--     Some distros read Xresources instead of Xdefaults, just rename the file.
+-     Some distros read Xresources instead of Xdefaults, just rename the file and updated $DOTS variable in install.sh
 -     Solarized color theme.
 -     Source Code Pro for Powerline font.
 
-terminator:
+Terminator:
 -     No scrollbar, customized color pallete, SourceCodePro for Powerline font.
 
 TODO:
@@ -65,4 +65,4 @@ TODO:
 -     Simple way to have per-machine configs like bash aliases, PS1, etc.
 -     Better yet, simple way to have profiles.
 -     Desktop screenshot.
--     Ideas? 
+-     Any ideas? 
