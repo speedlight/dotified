@@ -5,7 +5,7 @@ dotfiles
 
 dotfiles for my allways used apps ;)
 
-The install script can be run in silent or interactive modes. Silent mode dont ask for any confirmation. Interactive mode, ask confirmation in some steps like backup of original dotfiles. Look at install.sh for see what is really happening.
+The install script can be run in silent or interactive modes. Silent mode dont ask for any confirmation. Interactive mode, ask confirmation in some steps like backup of original dotfiles. Look at install.sh for details.
 
 INSTALL:
 
@@ -19,9 +19,9 @@ Or for interactive mode:
 The script have 3 variables to hold the files to be backed up or restore.
 - $DOTS is for .files in $HOME
 - $DOTSCFG is for .files that are under a dot directory like .config/terminator or .vim/colors
-- $DOTBASHALIAS is for .bash_aliases.d directory specifically 
+- $DOTBASHALIAS is for .bash_aliases.d directory 
 
-There is a .fonts directory also that is added to the fonts cache, so if you want your fonts to be dotified just put them in the fonts/ directory in the reposittory.
+There is a .fonts directory also that is added to the fonts cache, so if you want your fonts to be dotified just put them in the fonts/ directory.
 
 BASH:
 
@@ -59,10 +59,3 @@ Xdefaults:
 
 Terminator:
 -     No scrollbar, customized color pallete, SourceCodePro for Powerline font.
-
-TODO:
--     Add user-config feature, like vimrc-local.
--     Simple way to have per-machine configs like bash aliases, PS1, etc.
--     Better yet, simple way to have profiles.
--     Desktop screenshot.
--     Any ideas? 
