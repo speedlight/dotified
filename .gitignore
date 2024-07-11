@@ -1,3 +1,4 @@
+nvim/bundle/*
 *.swp
 *~
 *.vscode
